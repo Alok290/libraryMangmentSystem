@@ -8,6 +8,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table
 @Getter
@@ -31,8 +34,15 @@ public class Book {
 
     private double rating; //Postman
 
+    private boolean isAvailable;
+
     @ManyToOne
     @JoinColumn
     private Author author;
+
+
+    @OneToMany (mappedBy = "book",cascade= CascadeType.ALL)
+    private List<Transaction> transactionList = new ArrayList<>();
+
 
 }

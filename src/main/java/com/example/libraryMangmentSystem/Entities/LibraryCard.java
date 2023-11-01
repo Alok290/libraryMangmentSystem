@@ -8,6 +8,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table
 @Getter
@@ -25,8 +28,14 @@ public class LibraryCard {
 
     private String nameOnCard;
 
+    private Integer noOfBooksIssued;
+
 
     @OneToOne
     @JoinColumn
     private Student student;
+
+
+    @OneToMany (mappedBy = "card",cascade = CascadeType.ALL)
+    private List<Transaction> transactionList = new ArrayList<>();
 }
